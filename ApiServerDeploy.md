@@ -1,3 +1,12 @@
+## Downoad & Install
+- DataBase Management System
+  - [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
+  - [PostgreSQL](https://www.postgresql.org/download/)
+- .NET Core
+  - [for Linux](https://www.microsoft.com/net/learn/get-started/linuxubuntu)
+  - [for macOs](https://www.microsoft.com/net/learn/get-started/macos)
+  - [for Windows](https://www.microsoft.com/net/learn/get-started/windows)
+  
 ## Build
 ```bash
 cp ./appsettings.default.json ./appsettings.json
