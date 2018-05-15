@@ -1,7 +1,7 @@
 ### Установка и настройка PostgreSQL:
 
 ```
-sudo apt-get install postgresql pgadmin3
+sudo apt-get install postgresql
 ```
 Чтобы разрешить соединения по TCP/IP, отредактируйте файл /etc/postgresql/9.5/main/postgresql.conf. Найдите строку
 ```
@@ -13,7 +13,7 @@ listen_addresses = 'localhost'
 ```
 Перезапуск для принятия изменений
 ```
-sudo /etc/init.d/postgresql-9.5 restart
+sudo /etc/init.d/postgresql restart
 ```
 Доступ к командной строке Postgres без переключения аккаунтов
 ```
@@ -27,17 +27,17 @@ CREATE DATABASE auth_db;
 
 Создание пользователя
 ```
-CREATE USER auth_server_papi WITH password 'auth_server_papi';
+CREATE USER auth_server WITH password 'auth_server';
 ```
 
 Назначение прав
 ```
-GRANT ALL ON DATABASE auth_db TO auth_server_papi;
+GRANT ALL ON DATABASE auth_db TO auth_server;
 ```
 
 Аутентификация и начало работы с базой данных
 ```
-psql -h localhost auth_db auth_server_papi
+psql -h localhost auth_db auth_server
 ```
 
 ### Скрипты создания таблиц
@@ -84,6 +84,8 @@ CREATE TRIGGER auth_info_upd_token_trigger
 
 ### Как задеплоить сервер
 
+sudo apt-get install default-jdk
+
 **Создать на сервере папку WebAuthServer и скопировать в нее 3 библиотеки + файл конфигурации:**
 
 *gson-2.8.2.jar*
@@ -97,5 +99,8 @@ CREATE TRIGGER auth_info_upd_token_trigger
 **Запустить сервер командой:**
 ```
 java -cp WebAuthServer.jar:/home/ubuntu/WebAuthServer/*: ru.scorpio92.authserver.AuthServer
-```
 
+либо в фоне
+
+nohup java -cp WebAuthServer.jar:/home/ubuntu/WebAuthServer/*: ru.scorpio92.authserver.AuthServer &
+```
